@@ -143,68 +143,52 @@ export default function Home() {
 
        {/* NAVBAR */}
 <header className="site-header">
-  <nav className="site-nav">
+  <nav className="mx-auto flex h-[72px] max-w-[1550px] items-center justify-between border-b border-white/10 bg-[#111113]/95 px-4 backdrop-blur-xl md:rounded-b-[2rem] md:border md:px-6">
 
-    {/* Logo */}
-    <button
-      onClick={() => scrollToSection("home")}
-      className="nav-logo"
-    >
-      Harsha C K
-    </button>
+          <a
+            href="#home"
+            className="rounded-md border border-white/80 px-3 py-1.5 text-[15px] font-bold tracking-[0.12em]"
+          >
+            HARSHA.
+          </a>
 
-    {/* DESKTOP NAV */}
-    <div className="desktop-nav">
-      <button onClick={() => scrollToSection("home")}>Home</button>
-      <button onClick={() => scrollToSection("about")}>About</button>
-      <button onClick={() => scrollToSection("skills")}>Skills</button>
-      <button onClick={() => scrollToSection("projects")}>Projects</button>
-      <button onClick={() => scrollToSection("contact")}>Contact</button>
-    </div>
+          <div className="hidden items-center gap-10 md:flex">
+            <a
+              href="#about"
+              className="text-sm text-white/50 transition hover:text-white"
+            >
+              About
+            </a>
 
-    {/* MOBILE HAMBURGER */}
-    <button
-      className="mobile-menu-button"
-      onClick={() => setMenuOpen(!menuOpen)}
-      aria-label="Open navigation"
-    >
-      <span
-        className={menuOpen ? "line line-1 open" : "line line-1"}
-      />
-      <span
-        className={menuOpen ? "line line-2 open" : "line line-2"}
-      />
-      <span
-        className={menuOpen ? "line line-3 open" : "line line-3"}
-      />
-    </button>
+            <a
+              href="#skills"
+              className="text-sm text-white/50 transition hover:text-white"
+            >
+              Skills
+            </a>
 
-    {/* MOBILE MENU */}
-    <div className={menuOpen ? "mobile-menu open" : "mobile-menu"}>
+            <a
+              href="#projects"
+              className="text-sm text-white/50 transition hover:text-white"
+            >
+              Projects
+            </a>
 
-      <button onClick={() => scrollToSection("home")}>
-        Home
-      </button>
+            <a
+              href="#contact"
+              className="text-sm text-white/50 transition hover:text-white"
+            >
+              Contact
+            </a>
+          </div>
 
-      <button onClick={() => scrollToSection("about")}>
-        About
-      </button>
-
-      <button onClick={() => scrollToSection("skills")}>
-        Skills
-      </button>
-
-      <button onClick={() => scrollToSection("projects")}>
-        Projects
-      </button>
-
-      <button onClick={() => scrollToSection("contact")}>
-        Contact
-      </button>
-
-    </div>
-
-  </nav>
+          <a
+            href="#contact"
+            className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-105"
+          >
+            Let&apos;s talk
+          </a>
+        </nav>
 </header>
 
       {/* HERO */}
