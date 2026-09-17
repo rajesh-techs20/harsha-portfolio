@@ -120,52 +120,42 @@ export default function Home() {
 
       {/* NAVBAR */}
       <header className="fixed left-0 right-0 top-0 z-50 px-0 md:px-5">
-        <nav className="mx-auto flex h-[72px] max-w-[1550px] items-center justify-between border-b border-white/10 bg-[#111113]/95 px-4 backdrop-blur-xl md:rounded-b-[2rem] md:border md:px-6">
+        <nav className="fixed top-4 left-1/2 z-50 w-[92%] max-w-6xl -translate-x-1/2 rounded-full border border-white/10 bg-black/70 px-5 py-3 backdrop-blur-xl">
+  <div className="flex items-center justify-between">
 
-          <a
-            href="#home"
-            className="rounded-md border border-white/80 px-3 py-1.5 text-[15px] font-bold tracking-[0.12em]"
-          >
-            HARSHA.
-          </a>
+    {/* Logo */}
+    <a href="#home" className="text-lg font-bold text-white">
+      Harsha C K
+    </a>
 
-          <div className="hidden items-center gap-10 md:flex">
-            <a
-              href="#about"
-              className="text-sm text-white/50 transition hover:text-white"
-            >
-              About
-            </a>
+    {/* Desktop Navigation */}
+    <div className="hidden items-center gap-10 md:flex">
+      <a href="#about" className="text-sm font-semibold text-white/70 transition hover:text-white">
+        About
+      </a>
+      <a href="#skills" className="text-sm font-semibold text-white/70 transition hover:text-white">
+        Skills
+      </a>
+      <a href="#projects" className="text-sm font-semibold text-white/70 transition hover:text-white">
+        Projects
+      </a>
+      <a href="#contact" className="text-sm font-semibold text-white/70 transition hover:text-white">
+        Contact
+      </a>
+    </div>
 
-            <a
-              href="#skills"
-              className="text-sm text-white/50 transition hover:text-white"
-            >
-              Skills
-            </a>
+    {/* Mobile 3-line menu */}
+    <button
+      className="flex flex-col gap-1.5 md:hidden"
+      aria-label="Open menu"
+    >
+      <span className="block h-0.5 w-6 rounded-full bg-white"></span>
+      <span className="block h-0.5 w-6 rounded-full bg-white"></span>
+      <span className="block h-0.5 w-6 rounded-full bg-white"></span>
+    </button>
 
-            <a
-              href="#projects"
-              className="text-sm text-white/50 transition hover:text-white"
-            >
-              Projects
-            </a>
-
-            <a
-              href="#contact"
-              className="text-sm text-white/50 transition hover:text-white"
-            >
-              Contact
-            </a>
-          </div>
-
-          <a
-            href="#contact"
-            className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:scale-105"
-          >
-            Let&apos;s talk
-          </a>
-        </nav>
+  </div>
+</nav>
       </header>
 
       {/* HERO */}
