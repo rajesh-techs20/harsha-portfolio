@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
@@ -16,7 +15,10 @@ import {
 } from "lucide-react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
   visible: {
     opacity: 1,
     y: 0,
@@ -104,6 +106,24 @@ const skills = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    setMenuOpen(false);
+
+    const element = document.getElementById(id);
+
+    if (element) {
+      const navbarOffset = 90;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: elementPosition - navbarOffset,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
 
@@ -123,138 +143,162 @@ export default function Home() {
 
       {/* NAVBAR */}
       <header className="fixed left-0 right-0 top-0 z-50 px-0 md:px-5">
-         <nav className="fixed left-1/2 top-4 z-50 w-[92%] max-w-6xl -translate-x-1/2 rounded-full border border-white/10 bg-black/70 px-5 py-3 backdrop-blur-xl">
-  <div className="flex items-center justify-between">
+        <nav className="mx-auto mt-4 w-[92%] max-w-6xl rounded-full border border-white/10 bg-black/70 px-5 py-3 backdrop-blur-xl">
 
-    {/* Logo */}
-    <a
-      href="#home"
-      onClick={() => setMenuOpen(false)}
-      className="text-lg font-bold text-white"
-    >
-      Harsha C K
-    </a>
+          <div className="flex items-center justify-between">
 
-    {/* Desktop Navigation */}
-    <div className="hidden items-center gap-10 md:flex">
-      <a
-        href="#about"
-        className="text-sm font-semibold text-white/70 transition hover:text-white"
-      >
-        About
-      </a>
+            {/* LOGO */}
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-lg font-bold text-white"
+            >
+              Harsha C K
+            </button>
 
-      <a
-        href="#skills"
-        className="text-sm font-semibold text-white/70 transition hover:text-white"
-      >
-        Skills
-      </a>
+            {/* DESKTOP NAVIGATION */}
+            <div className="hidden items-center gap-10 md:flex">
 
-      <a
-        href="#projects"
-        className="text-sm font-semibold text-white/70 transition hover:text-white"
-      >
-        Projects
-      </a>
+              <button
+                onClick={() => scrollToSection("home")}
+                className="text-sm font-semibold text-white/70 transition hover:text-white"
+              >
+                Home
+              </button>
 
-      <a
-        href="#contact"
-        className="text-sm font-semibold text-white/70 transition hover:text-white"
-      >
-        Contact
-      </a>
-    </div>
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-sm font-semibold text-white/70 transition hover:text-white"
+              >
+                About
+              </button>
 
-    {/* Mobile Hamburger */}
-    <button
-      onClick={() => setMenuOpen(!menuOpen)}
-      className="relative flex h-10 w-10 items-center justify-center md:hidden"
-      aria-label="Toggle navigation menu"
-    >
-      <div className="flex flex-col gap-1.5">
-        <motion.span
-          animate={
-            menuOpen
-              ? { rotate: 45, y: 8 }
-              : { rotate: 0, y: 0 }
-          }
-          className="block h-0.5 w-6 rounded-full bg-white"
-        />
+              <button
+                onClick={() => scrollToSection("skills")}
+                className="text-sm font-semibold text-white/70 transition hover:text-white"
+              >
+                Skills
+              </button>
 
-        <motion.span
-          animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-          className="block h-0.5 w-6 rounded-full bg-white"
-        />
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="text-sm font-semibold text-white/70 transition hover:text-white"
+              >
+                Projects
+              </button>
 
-        <motion.span
-          animate={
-            menuOpen
-              ? { rotate: -45, y: -8 }
-              : { rotate: 0, y: 0 }
-          }
-          className="block h-0.5 w-6 rounded-full bg-white"
-        />
-      </div>
-    </button>
-  </div>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-sm font-semibold text-white/70 transition hover:text-white"
+              >
+                Contact
+              </button>
 
-  {/* Mobile Menu */}
-  <motion.div
-    initial={false}
-    animate={
-      menuOpen
-        ? {
-            opacity: 1,
-            height: "auto",
-            marginTop: 16,
-          }
-        : {
-            opacity: 0,
-            height: 0,
-            marginTop: 0,
-          }
-    }
-    transition={{ duration: 0.25 }}
-    className="overflow-hidden md:hidden"
-  >
-    <div className="flex flex-col border-t border-white/10 pt-3">
+            </div>
 
-      <a
-        href="#about"
-        onClick={() => setMenuOpen(false)}
-        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-      >
-        About
-      </a>
+            {/* MOBILE HAMBURGER */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="relative flex h-10 w-10 items-center justify-center md:hidden"
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+            >
+              <div className="flex flex-col gap-1.5">
 
-      <a
-        href="#skills"
-        onClick={() => setMenuOpen(false)}
-        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-      >
-        Skills
-      </a>
+                <motion.span
+                  animate={
+                    menuOpen
+                      ? { rotate: 45, y: 8 }
+                      : { rotate: 0, y: 0 }
+                  }
+                  transition={{ duration: 0.2 }}
+                  className="block h-0.5 w-6 rounded-full bg-white"
+                />
 
-      <a
-        href="#projects"
-        onClick={() => setMenuOpen(false)}
-        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-      >
-        Projects
-      </a>
+                <motion.span
+                  animate={
+                    menuOpen
+                      ? { opacity: 0 }
+                      : { opacity: 1 }
+                  }
+                  transition={{ duration: 0.15 }}
+                  className="block h-0.5 w-6 rounded-full bg-white"
+                />
 
-      <a
-        href="#contact"
-        onClick={() => setMenuOpen(false)}
-        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-      >
-        Contact
-      </a>
+                <motion.span
+                  animate={
+                    menuOpen
+                      ? { rotate: -45, y: -8 }
+                      : { rotate: 0, y: 0 }
+                  }
+                  transition={{ duration: 0.2 }}
+                  className="block h-0.5 w-6 rounded-full bg-white"
+                />
 
-    </div>
-  </motion.div>
-</nav>
+              </div>
+            </button>
+
+          </div>
+
+          {/* MOBILE MENU */}
+          <motion.div
+            initial={false}
+            animate={
+              menuOpen
+                ? {
+                    opacity: 1,
+                    height: "auto",
+                    marginTop: 16,
+                  }
+                : {
+                    opacity: 0,
+                    height: 0,
+                    marginTop: 0,
+                  }
+            }
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden md:hidden"
+          >
+            <div className="border-t border-white/10 pt-3">
+
+              <button
+                onClick={() => scrollToSection("home")}
+                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+              >
+                Home
+              </button>
+
+              <button
+                onClick={() => scrollToSection("about")}
+                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+              >
+                About
+              </button>
+
+              <button
+                onClick={() => scrollToSection("skills")}
+                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+              >
+                Skills
+              </button>
+
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+              >
+                Projects
+              </button>
+
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+              >
+                Contact
+              </button>
+
+            </div>
+          </motion.div>
+
+        </nav>
       </header>
 
       {/* HERO */}
@@ -303,8 +347,8 @@ export default function Home() {
               variants={fadeUp}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <a
-                href="#projects"
+              <button
+                onClick={() => scrollToSection("projects")}
                 className="group flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-black transition hover:scale-105"
               >
                 View projects
@@ -313,7 +357,7 @@ export default function Home() {
                   size={17}
                   className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
                 />
-              </a>
+              </button>
 
               <a
                 href="https://github.com/harsha-ck"
@@ -345,7 +389,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* ONLY PERSONAL PHOTO */}
+          {/* PERSONAL PHOTO */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -362,15 +406,17 @@ export default function Home() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-white/5" />
             </div>
           </motion.div>
+
         </div>
       </section>
 
       {/* ABOUT */}
       <section
         id="about"
-        className="border-t border-white/10 px-6 py-28 md:px-12"
+        className="scroll-mt-28 border-t border-white/10 px-6 py-28 md:px-12"
       >
         <div className="mx-auto max-w-[1200px]">
+
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -401,13 +447,14 @@ export default function Home() {
               </p>
             </motion.div>
           </motion.div>
+
         </div>
       </section>
 
       {/* SKILLS */}
       <section
         id="skills"
-        className="border-t border-white/10 px-6 py-28 md:px-12"
+        className="scroll-mt-28 border-t border-white/10 px-6 py-28 md:px-12"
       >
         <div className="mx-auto max-w-[1200px]">
 
@@ -448,6 +495,7 @@ export default function Home() {
                     className="group bg-[#09090c] p-8 transition hover:bg-[#0d0d11] md:p-10"
                   >
                     <div className="mb-8 flex items-center justify-between">
+
                       <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03]">
                         <Icon size={19} className="text-white/65" />
                       </div>
@@ -455,6 +503,7 @@ export default function Home() {
                       <span className="text-xs text-white/20">
                         0{index + 1}
                       </span>
+
                     </div>
 
                     <h3 className="text-xl font-medium">
@@ -471,18 +520,21 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
+
                   </motion.div>
                 );
               })}
+
             </div>
           </motion.div>
+
         </div>
       </section>
 
       {/* PROJECTS */}
       <section
         id="projects"
-        className="border-t border-white/10 px-6 py-28 md:px-12"
+        className="scroll-mt-28 border-t border-white/10 px-6 py-28 md:px-12"
       >
         <div className="mx-auto max-w-[1200px]">
 
@@ -503,6 +555,7 @@ export default function Home() {
             </motion.div>
 
             <div className="space-y-5">
+
               {projects.map((project) => {
                 const Icon = project.icon;
 
@@ -531,6 +584,7 @@ export default function Home() {
                         <span className="absolute right-6 top-6 text-xs tracking-[0.25em] text-white/20">
                           {project.number} / 03
                         </span>
+
                       </div>
 
                       <div className="flex flex-col justify-between p-7 md:p-10">
@@ -557,6 +611,7 @@ export default function Home() {
                                 Link coming soon
                               </span>
                             )}
+
                           </div>
 
                           <h3 className="text-2xl font-medium tracking-tight md:text-4xl">
@@ -578,13 +633,17 @@ export default function Home() {
                             </span>
                           ))}
                         </div>
+
                       </div>
+
                     </div>
                   </motion.article>
                 );
               })}
+
             </div>
           </motion.div>
+
         </div>
       </section>
 
@@ -627,6 +686,7 @@ export default function Home() {
                 View LeetCode
                 <ArrowUpRight size={15} />
               </a>
+
             </motion.div>
 
             <motion.div variants={fadeUp}>
@@ -659,9 +719,12 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
+
               </div>
             </motion.div>
+
           </motion.div>
+
         </div>
       </section>
 
@@ -730,6 +793,7 @@ export default function Home() {
                   </p>
 
                   <div className="mt-8 flex flex-wrap gap-3">
+
                     <span className="rounded-full border border-white/10 px-4 py-2 text-xs text-white/40">
                       2nd Year
                     </span>
@@ -741,6 +805,7 @@ export default function Home() {
                     <span className="rounded-full border border-white/10 px-4 py-2 text-xs text-white/40">
                       Bengaluru
                     </span>
+
                   </div>
 
                   <a
@@ -752,17 +817,22 @@ export default function Home() {
                     PES University
                     <ExternalLink size={15} />
                   </a>
+
                 </div>
+
               </div>
+
             </motion.div>
+
           </motion.div>
+
         </div>
       </section>
 
       {/* CONTACT */}
       <section
         id="contact"
-        className="border-t border-white/10 px-6 py-32 md:px-12"
+        className="scroll-mt-28 border-t border-white/10 px-6 py-32 md:px-12"
       >
         <div className="mx-auto max-w-[1200px]">
 
@@ -836,7 +906,9 @@ export default function Home() {
               </a>
 
             </motion.div>
+
           </motion.div>
+
         </div>
       </section>
 
@@ -849,36 +921,47 @@ export default function Home() {
           </p>
 
           <div className="flex flex-wrap gap-5">
-            <a
-              href="https://github.com/harsha-ck"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-white"
-            >
-              GitHub
-            </a>
 
-            <a
-              href="https://www.linkedin.com/in/harsha-c-k-506020393?trk=contact-info"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={() => scrollToSection("home")}
               className="transition hover:text-white"
             >
-              LinkedIn
-            </a>
+              Home
+            </button>
 
-            <a
-              href="https://leetcode.com/u/HarshaCK/"
-              target="_blank"
-              rel="noreferrer"
+            <button
+              onClick={() => scrollToSection("about")}
               className="transition hover:text-white"
             >
-              LeetCode
-            </a>
+              About
+            </button>
+
+            <button
+              onClick={() => scrollToSection("skills")}
+              className="transition hover:text-white"
+            >
+              Skills
+            </button>
+
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="transition hover:text-white"
+            >
+              Projects
+            </button>
+
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="transition hover:text-white"
+            >
+              Contact
+            </button>
+
           </div>
 
         </div>
       </footer>
+
     </main>
   );
 }
