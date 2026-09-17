@@ -141,165 +141,71 @@ export default function Home() {
         />
       </div>
 
-      {/* NAVBAR */}
-      <header className="fixed left-0 right-0 top-0 z-50 px-0 md:px-5">
-        <nav className="mx-auto mt-4 w-[92%] max-w-6xl rounded-full border border-white/10 bg-black/70 px-5 py-3 backdrop-blur-xl">
+       {/* NAVBAR */}
+<header className="site-header">
+  <nav className="site-nav">
 
-          <div className="flex items-center justify-between">
+    {/* Logo */}
+    <button
+      onClick={() => scrollToSection("home")}
+      className="nav-logo"
+    >
+      Harsha C K
+    </button>
 
-            {/* LOGO */}
-            <button
-              onClick={() => scrollToSection("home")}
-              className="text-lg font-bold text-white"
-            >
-              Harsha C K
-            </button>
+    {/* DESKTOP NAV */}
+    <div className="desktop-nav">
+      <button onClick={() => scrollToSection("home")}>Home</button>
+      <button onClick={() => scrollToSection("about")}>About</button>
+      <button onClick={() => scrollToSection("skills")}>Skills</button>
+      <button onClick={() => scrollToSection("projects")}>Projects</button>
+      <button onClick={() => scrollToSection("contact")}>Contact</button>
+    </div>
 
-            {/* DESKTOP NAVIGATION */}
-            <div className="hidden items-center gap-10 md:flex">
+    {/* MOBILE HAMBURGER */}
+    <button
+      className="mobile-menu-button"
+      onClick={() => setMenuOpen(!menuOpen)}
+      aria-label="Open navigation"
+    >
+      <span
+        className={menuOpen ? "line line-1 open" : "line line-1"}
+      />
+      <span
+        className={menuOpen ? "line line-2 open" : "line line-2"}
+      />
+      <span
+        className={menuOpen ? "line line-3 open" : "line line-3"}
+      />
+    </button>
 
-              <button
-                onClick={() => scrollToSection("home")}
-                className="text-sm font-semibold text-white/70 transition hover:text-white"
-              >
-                Home
-              </button>
+    {/* MOBILE MENU */}
+    <div className={menuOpen ? "mobile-menu open" : "mobile-menu"}>
 
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-sm font-semibold text-white/70 transition hover:text-white"
-              >
-                About
-              </button>
+      <button onClick={() => scrollToSection("home")}>
+        Home
+      </button>
 
-              <button
-                onClick={() => scrollToSection("skills")}
-                className="text-sm font-semibold text-white/70 transition hover:text-white"
-              >
-                Skills
-              </button>
+      <button onClick={() => scrollToSection("about")}>
+        About
+      </button>
 
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="text-sm font-semibold text-white/70 transition hover:text-white"
-              >
-                Projects
-              </button>
+      <button onClick={() => scrollToSection("skills")}>
+        Skills
+      </button>
 
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-sm font-semibold text-white/70 transition hover:text-white"
-              >
-                Contact
-              </button>
+      <button onClick={() => scrollToSection("projects")}>
+        Projects
+      </button>
 
-            </div>
+      <button onClick={() => scrollToSection("contact")}>
+        Contact
+      </button>
 
-            {/* MOBILE HAMBURGER */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="relative flex h-10 w-10 items-center justify-center md:hidden"
-              aria-label="Toggle navigation menu"
-              aria-expanded={menuOpen}
-            >
-              <div className="flex flex-col gap-1.5">
+    </div>
 
-                <motion.span
-                  animate={
-                    menuOpen
-                      ? { rotate: 45, y: 8 }
-                      : { rotate: 0, y: 0 }
-                  }
-                  transition={{ duration: 0.2 }}
-                  className="block h-0.5 w-6 rounded-full bg-white"
-                />
-
-                <motion.span
-                  animate={
-                    menuOpen
-                      ? { opacity: 0 }
-                      : { opacity: 1 }
-                  }
-                  transition={{ duration: 0.15 }}
-                  className="block h-0.5 w-6 rounded-full bg-white"
-                />
-
-                <motion.span
-                  animate={
-                    menuOpen
-                      ? { rotate: -45, y: -8 }
-                      : { rotate: 0, y: 0 }
-                  }
-                  transition={{ duration: 0.2 }}
-                  className="block h-0.5 w-6 rounded-full bg-white"
-                />
-
-              </div>
-            </button>
-
-          </div>
-
-          {/* MOBILE MENU */}
-          <motion.div
-            initial={false}
-            animate={
-              menuOpen
-                ? {
-                    opacity: 1,
-                    height: "auto",
-                    marginTop: 16,
-                  }
-                : {
-                    opacity: 0,
-                    height: 0,
-                    marginTop: 0,
-                  }
-            }
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden md:hidden"
-          >
-            <div className="border-t border-white/10 pt-3">
-
-              <button
-                onClick={() => scrollToSection("home")}
-                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                Home
-              </button>
-
-              <button
-                onClick={() => scrollToSection("about")}
-                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                About
-              </button>
-
-              <button
-                onClick={() => scrollToSection("skills")}
-                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                Skills
-              </button>
-
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                Projects
-              </button>
-
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                Contact
-              </button>
-
-            </div>
-          </motion.div>
-
-        </nav>
-      </header>
+  </nav>
+</header>
 
       {/* HERO */}
       <section
