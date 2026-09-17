@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
   ArrowUpRight,
@@ -101,6 +103,7 @@ const skills = [
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
 
@@ -120,41 +123,137 @@ export default function Home() {
 
       {/* NAVBAR */}
       <header className="fixed left-0 right-0 top-0 z-50 px-0 md:px-5">
-        <nav className="fixed top-4 left-1/2 z-50 w-[92%] max-w-6xl -translate-x-1/2 rounded-full border border-white/10 bg-black/70 px-5 py-3 backdrop-blur-xl">
+         <nav className="fixed left-1/2 top-4 z-50 w-[92%] max-w-6xl -translate-x-1/2 rounded-full border border-white/10 bg-black/70 px-5 py-3 backdrop-blur-xl">
   <div className="flex items-center justify-between">
 
     {/* Logo */}
-    <a href="#home" className="text-lg font-bold text-white">
+    <a
+      href="#home"
+      onClick={() => setMenuOpen(false)}
+      className="text-lg font-bold text-white"
+    >
       Harsha C K
     </a>
 
     {/* Desktop Navigation */}
     <div className="hidden items-center gap-10 md:flex">
-      <a href="#about" className="text-sm font-semibold text-white/70 transition hover:text-white">
+      <a
+        href="#about"
+        className="text-sm font-semibold text-white/70 transition hover:text-white"
+      >
         About
       </a>
-      <a href="#skills" className="text-sm font-semibold text-white/70 transition hover:text-white">
+
+      <a
+        href="#skills"
+        className="text-sm font-semibold text-white/70 transition hover:text-white"
+      >
         Skills
       </a>
-      <a href="#projects" className="text-sm font-semibold text-white/70 transition hover:text-white">
+
+      <a
+        href="#projects"
+        className="text-sm font-semibold text-white/70 transition hover:text-white"
+      >
         Projects
       </a>
-      <a href="#contact" className="text-sm font-semibold text-white/70 transition hover:text-white">
+
+      <a
+        href="#contact"
+        className="text-sm font-semibold text-white/70 transition hover:text-white"
+      >
         Contact
       </a>
     </div>
 
-    {/* Mobile 3-line menu */}
+    {/* Mobile Hamburger */}
     <button
-      className="flex flex-col gap-1.5 md:hidden"
-      aria-label="Open menu"
+      onClick={() => setMenuOpen(!menuOpen)}
+      className="relative flex h-10 w-10 items-center justify-center md:hidden"
+      aria-label="Toggle navigation menu"
     >
-      <span className="block h-0.5 w-6 rounded-full bg-white"></span>
-      <span className="block h-0.5 w-6 rounded-full bg-white"></span>
-      <span className="block h-0.5 w-6 rounded-full bg-white"></span>
-    </button>
+      <div className="flex flex-col gap-1.5">
+        <motion.span
+          animate={
+            menuOpen
+              ? { rotate: 45, y: 8 }
+              : { rotate: 0, y: 0 }
+          }
+          className="block h-0.5 w-6 rounded-full bg-white"
+        />
 
+        <motion.span
+          animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+          className="block h-0.5 w-6 rounded-full bg-white"
+        />
+
+        <motion.span
+          animate={
+            menuOpen
+              ? { rotate: -45, y: -8 }
+              : { rotate: 0, y: 0 }
+          }
+          className="block h-0.5 w-6 rounded-full bg-white"
+        />
+      </div>
+    </button>
   </div>
+
+  {/* Mobile Menu */}
+  <motion.div
+    initial={false}
+    animate={
+      menuOpen
+        ? {
+            opacity: 1,
+            height: "auto",
+            marginTop: 16,
+          }
+        : {
+            opacity: 0,
+            height: 0,
+            marginTop: 0,
+          }
+    }
+    transition={{ duration: 0.25 }}
+    className="overflow-hidden md:hidden"
+  >
+    <div className="flex flex-col border-t border-white/10 pt-3">
+
+      <a
+        href="#about"
+        onClick={() => setMenuOpen(false)}
+        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+      >
+        About
+      </a>
+
+      <a
+        href="#skills"
+        onClick={() => setMenuOpen(false)}
+        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+      >
+        Skills
+      </a>
+
+      <a
+        href="#projects"
+        onClick={() => setMenuOpen(false)}
+        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+      >
+        Projects
+      </a>
+
+      <a
+        href="#contact"
+        onClick={() => setMenuOpen(false)}
+        className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+      >
+        Contact
+      </a>
+
+    </div>
+  </motion.div>
 </nav>
       </header>
 
